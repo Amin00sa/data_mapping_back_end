@@ -29,7 +29,8 @@ class FileStoreRequest extends FormRequest
                     $extensions = ['csv', 'xml', 'xls', 'xlsx', 'sql'];
                     $allowedExtensions = ['csv', 'xml', 'xls', 'xlsx', 'txt'];
 
-                    if (!in_array($file->extension(), $allowedExtensions) || pathinfo($file->getClientOriginalName(), PATHINFO_EXTENSION) !== 'sql') {
+                    // Check if the file extension is not in allowed extensions or if the file extension is 'sql' but not the only one
+                    if ((!in_array($file->extension(), $allowedExtensions) && $file->extension() !== 'sql') || ($file->extension() === 'sql' && count(pathinfo($file->getClientOriginalName(), PATHINFO_EXTENSION)) > 1)) {
                         $fail("The {$attribute} must be a file of type: " . implode(', ', $extensions) . ".");
                     }
                 }
