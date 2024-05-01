@@ -12,7 +12,9 @@ class DeleteDataEntriesAction
      */
     public function execute(array $validatedEntries): bool
     {
-        return DataEntry::destroy($validatedEntries['dataEntries']);
+        $collection = collect($validatedEntries['dataEntries']);
+        $pluckedIds = $collection->pluck('id')->toArray();
+        return DataEntry::destroy($pluckedIds);
     }
 }
 
