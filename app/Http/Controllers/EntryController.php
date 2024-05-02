@@ -16,6 +16,7 @@ class EntryController extends Controller
     /**
      * @param EntryStoreRequest $entryStoreRequest
      * @param CreateEntryAction $createEntryAction
+     *
      * @return EntryResource
      */
     public function store(EntryStoreRequest $entryStoreRequest, CreateEntryAction $createEntryAction): EntryResource
@@ -27,30 +28,40 @@ class EntryController extends Controller
      * @param Entry $entry
      * @param EntryStoreRequest $entryStoreRequest
      * @param UpdateEntryAction $updateEntryAction
+     *
      * @return JsonResponse
      */
-    public function update(Entry $entry, EntryStoreRequest $entryStoreRequest, UpdateEntryAction $updateEntryAction): JsonResponse
-    {
-        return response()->json([
-            'status' => $updateEntryAction->execute($entry, $entryStoreRequest->validated()),
-        ]);
+    public function update(
+        Entry $entry,
+        EntryStoreRequest $entryStoreRequest,
+        UpdateEntryAction $updateEntryAction
+    ): JsonResponse {
+        return response()->json(
+            [
+                'status' => $updateEntryAction->execute($entry, $entryStoreRequest->validated()),
+            ]
+        );
     }
 
     /**
      * @param Entry $entry
      * @param DeleteEntryAction $deleteExternalDataBaseAction
+     *
      * @return JsonResponse
      */
     public function destroy(Entry $entry, DeleteEntryAction $deleteExternalDataBaseAction): JsonResponse
     {
-        return response()->json([
-            'status' => $deleteExternalDataBaseAction->execute($entry),
-        ]);
+        return response()->json(
+            [
+                'status' => $deleteExternalDataBaseAction->execute($entry),
+            ]
+        );
     }
 
     /**
      * @param Entry $entry
      * @param GetDataEntriesAction $getDataEntriesAction
+     *
      * @return EntryResource
      */
     public function show(Entry $entry, GetDataEntriesAction $getDataEntriesAction): EntryResource

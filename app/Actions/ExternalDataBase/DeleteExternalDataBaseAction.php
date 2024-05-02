@@ -8,6 +8,7 @@ class DeleteExternalDataBaseAction
 {
     /**
      * @param ExternalDataBase $externalDataBase
+     *
      * @return bool
      */
     public function execute(ExternalDataBase $externalDataBase): bool

@@ -20,8 +20,8 @@ class FilterDataEntriesRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => ['nullable','string'],
-            'type' => ['nullable','string'],
+            'name' => ['nullable', 'string'],
+            'type' => ['nullable', 'string'],
         ];
     }
 }

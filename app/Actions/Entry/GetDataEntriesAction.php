@@ -9,6 +9,7 @@ class GetDataEntriesAction
 {
     /**
      * @param Entry $entry
+     *
      * @return Builder|Entry
      */
     public function execute(Entry $entry): Builder|Entry

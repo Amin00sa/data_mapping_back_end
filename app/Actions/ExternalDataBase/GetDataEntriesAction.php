@@ -24,10 +24,14 @@ class GetDataEntriesAction
     /**
      * @param ExternalDataBase $externalDataBase
      * @param array $validatedData
+     *
      * @return LengthAwarePaginator
      */
-    public function execute(ExternalDataBase $externalDataBase,array $validatedData): LengthAwarePaginator
+    public function execute(ExternalDataBase $externalDataBase, array $validatedData): LengthAwarePaginator
     {
-        return $this->dataEntryTransformer->getDataEntries($externalDataBase->entries()->with('dataEntries')->get(),$validatedData);
+        return $this->dataEntryTransformer->getDataEntries(
+            $externalDataBase->entries()->with('dataEntries')->get(),
+            $validatedData
+        );
     }
 }

@@ -3,7 +3,6 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\Rules\File;
 
 class FileStoreRequest extends FormRequest
 {
@@ -30,10 +29,13 @@ class FileStoreRequest extends FormRequest
                     $allowedExtensions = ['csv', 'xml', 'xls', 'xlsx', 'txt'];
 
                     // Check if the file extension is not in allowed extensions or if the file extension is 'sql' but not the only one
-                    if ((!in_array($file->extension(), $allowedExtensions) && $file->extension() !== 'sql') || ($file->extension() === 'sql' && count(pathinfo($file->getClientOriginalName(), PATHINFO_EXTENSION)) > 1)) {
+                    if ((!in_array($file->extension(), $allowedExtensions) && $file->extension(
+                            ) !== 'sql') || ($file->extension() === 'sql' && count(
+                                pathinfo($file->getClientOriginalName(), PATHINFO_EXTENSION)
+                            ) > 1)) {
                         $fail("The {$attribute} must be a file of type: " . implode(', ', $extensions) . ".");
                     }
-                }
+                },
             ],
         ];
     }

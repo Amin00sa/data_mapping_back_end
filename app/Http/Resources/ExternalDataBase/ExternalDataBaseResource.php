@@ -15,11 +15,11 @@ class ExternalDataBaseResource extends JsonResource
     public function toArray($request): array
     {
         return [
-            'id' => $this->id,
-            'name' => $this->name,
-            'created_at' => $this->created_at,
-            'entries' => EntryResource::collection($this->whenLoaded('entries')),
-            'entries_count' => $this->whenCounted('entries'),
+            'id'                 => $this->id,
+            'name'               => $this->name,
+            'created_at'         => $this->created_at,
+            'entries'            => EntryResource::collection($this->whenLoaded('entries')),
+            'entries_count'      => $this->whenCounted('entries'),
             'data_entries_count' => $this->whenCounted('dataEntries'),
         ];
     }

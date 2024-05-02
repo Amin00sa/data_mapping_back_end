@@ -10,6 +10,7 @@ class CreateEntryAction
 {
     /**
      * @param array $attributesEntry
+     *
      * @return Builder|ExternalDataBase
      */
     public function execute(array $attributesEntry): Builder|Entry

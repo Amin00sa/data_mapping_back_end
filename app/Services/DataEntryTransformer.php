@@ -11,6 +11,7 @@ class DataEntryTransformer
     /**
      * @param $dataEntries
      * @param $validatedData
+     *
      * @return LengthAwarePaginator
      */
     public function getDataEntries($dataEntries, $validatedData): LengthAwarePaginator
@@ -19,11 +20,13 @@ class DataEntryTransformer
         if ($validatedData && $validatedData['type'] && $validatedData['name']) {
             $data = $this->filterByKeyValue($data, $validatedData);
         }
+
         return $this->makePagination($data, 12);
     }
 
     /**
      * @param $dataEntries
+     *
      * @return array
      */
     private function makeTransposedData($dataEntries): array
@@ -41,12 +44,14 @@ class DataEntryTransformer
                 $newTransposedData[$key][] = $value;
             }
         }
+
         return $newTransposedData;
     }
 
     /**
      * @param $data
      * @param $validatedData
+     *
      * @return array
      */
     private function filterByKeyValue($data, $validatedData): array
@@ -54,17 +59,22 @@ class DataEntryTransformer
         $newFilteredArray = [];
         foreach ($data as $transposedDatum) {
             foreach ($transposedDatum as $value) {
-                if ($value['key'] === $validatedData['type'] && str_contains(strtolower($value['value']), strtolower($validatedData['name']))) {
+                if ($value['key'] === $validatedData['type'] && str_contains(
+                        strtolower($value['value']),
+                        strtolower($validatedData['name'])
+                    )) {
                     $newFilteredArray[] = $transposedDatum;
                 }
             }
         }
+
         return $newFilteredArray;
     }
 
     /**
      * @param $data
      * @param int $perPage
+     *
      * @return LengthAwarePaginator
      */
     private function makePagination($data, int $perPage): LengthAwarePaginator

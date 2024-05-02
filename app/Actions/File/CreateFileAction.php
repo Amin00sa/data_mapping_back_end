@@ -22,12 +22,12 @@ class CreateFileAction
     public function __construct(
         private readonly SqlTransformer $sqlTransformer,
         private readonly XmlTransformer $xmlTransformer
-    )
-    {
+    ) {
     }
 
     /**
      * @param array $attributesEntry
+     *
      * @return bool
      * @throws UploadFileException|Exception
      */
@@ -47,34 +47,40 @@ class CreateFileAction
                 throw new Exception('File not uploaded');
             }
         }
+
         return true;
     }
 
     /**
      * @param $file
+     *
      * @return array
      * @throws Exception
      */
     private function makeHeadersXML($file): array
     {
         $xmlString = file_get_contents($file);
+
         return $this->xmlTransformer->getAttribute($xmlString);
     }
 
 
     /**
      * @param $file
+     *
      * @return array
      */
     private function makeHeadersExcel($file): array
     {
         Excel::import($fileImport = new FileImport, $file);
+
         return $fileImport->headers;
     }
 
     /**
      * @param $filename
      * @param $file
+     *
      * @return array
      * @throws Exception
      */
@@ -83,6 +89,7 @@ class CreateFileAction
         if (pathinfo($filename, PATHINFO_EXTENSION) === 'sql') {
             $sql = file_get_contents($file);
             file_put_contents("storage/files/" . $filename, $sql);
+
             return $this->sqlTransformer->getAttribute($sql);
         } else {
             throw new Exception('Unexpected value');
@@ -93,15 +100,18 @@ class CreateFileAction
      * @param $filename
      * @param $headers
      * @param $file
+     *
      * @return void
      */
     private function saveFile($filename, $headers, $file): void
     {
         $path = $file->extension() === "txt" ? 'files/' . $filename : Storage::disk('public')->put("files", $file);
-        File::query()->create([
-            'name' => $filename,
-            'path_file' => $path,
-            'headers' => json_encode($headers)
-        ]);
+        File::query()->create(
+            [
+                'name'      => $filename,
+                'path_file' => $path,
+                'headers'   => json_encode($headers),
+            ]
+        );
     }
 }

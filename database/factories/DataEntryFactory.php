@@ -18,11 +18,12 @@ class DataEntryFactory extends Factory
     public function definition(): array
     {
         $entry = Entry::factory()->create()->id;
+
         return [
-            'id' => fake()->uuid,
-            'key' => fake()->name,
-            'value' => fake()->name,
-            'entry_id' => $entry
+            'id'       => fake()->uuid,
+            'key'      => fake()->name,
+            'value'    => fake()->name,
+            'entry_id' => $entry,
         ];
     }
 }

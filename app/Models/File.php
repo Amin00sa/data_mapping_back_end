@@ -5,8 +5,6 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\belongsTo;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
 class File extends Model
 {
@@ -20,7 +18,7 @@ class File extends Model
     protected $fillable = [
         'name',
         'path_file',
-        'headers'
+        'headers',
     ];
 
 }

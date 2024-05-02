@@ -9,6 +9,7 @@ class GetExternalDataBaseAction
 {
     /**
      * @param ExternalDataBase $externalDataBase
+     *
      * @return Builder|ExternalDataBase
      */
     public function execute(ExternalDataBase $externalDataBase): Builder|ExternalDataBase

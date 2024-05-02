@@ -20,10 +20,10 @@ class MappingStoreRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'object' => ['required', 'array'],
+            'object'           => ['required', 'array'],
             'object.*.entryId' => ['required', 'uuid', 'exists:entries,id'],
-            'object.*.header' => ['required', 'string'],
-            'fileId' => ['required', 'uuid', 'exists:files,id'],
+            'object.*.header'  => ['required', 'string'],
+            'fileId'           => ['required', 'uuid', 'exists:files,id'],
         ];
     }
 }

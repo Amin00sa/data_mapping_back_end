@@ -8,6 +8,7 @@ class GetFileAction
 {
     /**
      * @param File $file
+     *
      * @return File
      */
     public function execute(File $file): File

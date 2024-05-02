@@ -23,30 +23,41 @@ class ExternalDataBaseController extends Controller
     /**
      * @param Request $request
      * @param GetAllExternalDataBaseAction $getAllExternalDataBaseAction
+     *
      * @return ExternalDataBaseCollection
      */
-    public function index(Request $request, GetAllExternalDataBaseAction $getAllExternalDataBaseAction): ExternalDataBaseCollection
-    {
+    public function index(
+        Request $request,
+        GetAllExternalDataBaseAction $getAllExternalDataBaseAction
+    ): ExternalDataBaseCollection {
         return ExternalDataBaseCollection::make($getAllExternalDataBaseAction->execute($request->query()));
     }
 
     /**
      * @param ExternalDataBaseStoreRequest $externalDataBaseStoreRequest
      * @param CreateExternalDataBaseAction $createExternalDataBaseAction
+     *
      * @return ExternalDataBaseResource
      */
-    public function store(ExternalDataBaseStoreRequest $externalDataBaseStoreRequest, CreateExternalDataBaseAction $createExternalDataBaseAction): ExternalDataBaseResource
-    {
-        return ExternalDataBaseResource::make($createExternalDataBaseAction->execute($externalDataBaseStoreRequest->validated()));
+    public function store(
+        ExternalDataBaseStoreRequest $externalDataBaseStoreRequest,
+        CreateExternalDataBaseAction $createExternalDataBaseAction
+    ): ExternalDataBaseResource {
+        return ExternalDataBaseResource::make(
+            $createExternalDataBaseAction->execute($externalDataBaseStoreRequest->validated())
+        );
     }
 
     /**
      * @param ExternalDataBase $externalDataBase
      * @param GetExternalDataBaseAction $getExternalDataBaseAction
+     *
      * @return ExternalDataBaseResource
      */
-    public function show(ExternalDataBase $externalDataBase, GetExternalDataBaseAction $getExternalDataBaseAction): ExternalDataBaseResource
-    {
+    public function show(
+        ExternalDataBase $externalDataBase,
+        GetExternalDataBaseAction $getExternalDataBaseAction
+    ): ExternalDataBaseResource {
         return ExternalDataBaseResource::make($getExternalDataBaseAction->execute($externalDataBase));
     }
 
@@ -54,35 +65,53 @@ class ExternalDataBaseController extends Controller
      * @param ExternalDataBase $externalDataBase
      * @param UpdateEntriesOfExternalDataBaseRequest $updateEntriesOfExternalDataBaseRequest
      * @param UpdateExternalDataBaseAction $updateExternalDataBaseAction
+     *
      * @return JsonResponse
      */
-    public function update(ExternalDataBase $externalDataBase,UpdateEntriesOfExternalDataBaseRequest $updateEntriesOfExternalDataBaseRequest, UpdateExternalDataBaseAction $updateExternalDataBaseAction): JsonResponse
-    {
-        return response()->json([
-            'status' => $updateExternalDataBaseAction->execute($externalDataBase, $updateEntriesOfExternalDataBaseRequest->validated()),
-        ]);
+    public function update(
+        ExternalDataBase $externalDataBase,
+        UpdateEntriesOfExternalDataBaseRequest $updateEntriesOfExternalDataBaseRequest,
+        UpdateExternalDataBaseAction $updateExternalDataBaseAction
+    ): JsonResponse {
+        return response()->json(
+            [
+                'status' => $updateExternalDataBaseAction->execute(
+                    $externalDataBase,
+                    $updateEntriesOfExternalDataBaseRequest->validated()
+                ),
+            ]
+        );
     }
 
     /**
      * @param ExternalDataBase $externalDataBase
      * @param DeleteExternalDataBaseAction $deleteExternalDataBaseAction
+     *
      * @return JsonResponse
      */
-    public function destroy(ExternalDataBase $externalDataBase, DeleteExternalDataBaseAction $deleteExternalDataBaseAction): JsonResponse
-    {
-        return response()->json([
-            'status' => $deleteExternalDataBaseAction->execute($externalDataBase),
-        ]);
+    public function destroy(
+        ExternalDataBase $externalDataBase,
+        DeleteExternalDataBaseAction $deleteExternalDataBaseAction
+    ): JsonResponse {
+        return response()->json(
+            [
+                'status' => $deleteExternalDataBaseAction->execute($externalDataBase),
+            ]
+        );
     }
 
     /**
      * @param ExternalDataBase $externalDataBase
      * @param GetDataEntriesAction $getDataEntriesAction
      * @param FilterDataEntriesRequest $filterDataEntriesRequest
+     *
      * @return LengthAwarePaginator
      */
-    public function getDataEntries(ExternalDataBase $externalDataBase, GetDataEntriesAction $getDataEntriesAction, FilterDataEntriesRequest $filterDataEntriesRequest): LengthAwarePaginator
-    {
-        return $getDataEntriesAction->execute($externalDataBase,$filterDataEntriesRequest->validated());
+    public function getDataEntries(
+        ExternalDataBase $externalDataBase,
+        GetDataEntriesAction $getDataEntriesAction,
+        FilterDataEntriesRequest $filterDataEntriesRequest
+    ): LengthAwarePaginator {
+        return $getDataEntriesAction->execute($externalDataBase, $filterDataEntriesRequest->validated());
     }
 }

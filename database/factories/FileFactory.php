@@ -17,10 +17,10 @@ class FileFactory extends Factory
     public function definition(): array
     {
         return [
-            'id' => fake()->uuid,
-            'name' => fake()->name,
+            'id'        => fake()->uuid,
+            'name'      => fake()->name,
             'path_file' => fake()->name,
-            'headers' => [fake()->name,fake()->name],
+            'headers'   => [fake()->name, fake()->name],
         ];
     }
 }

@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use App\Enums\TypeDataEnum;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -21,7 +20,7 @@ class Entry extends Model
      */
     protected $fillable = [
         'name',
-        'type'
+        'type',
     ];
 
     /**

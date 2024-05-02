@@ -17,7 +17,7 @@ class ExternalDataBaseFactory extends Factory
     public function definition(): array
     {
         return [
-            'id' => fake()->uuid,
+            'id'   => fake()->uuid,
             'name' => fake()->name,
         ];
     }

@@ -15,13 +15,13 @@ it('get an existing externalDataBase', function () {
                     'id',
                     'name',
                     'created_at',
-                ]
-            ])
+                ],
+            ]
+        )
         ->assertOk();
 });
 
 it('get an non existing externalDataBase', function () {
-
     $this->getJson(route('databases.show', Str::uuid()))
         ->assertStatus(Response::HTTP_NOT_FOUND)
         ->assertNotFound();

@@ -1,17 +1,17 @@
 <?php
 
-use Illuminate\Http\Response;
 use App\Enums\TypeDataEnum;
+use Illuminate\Http\Response;
 
 it('create a new externalDataBase', function () {
     $externalDataBase = [
-        'name' => fake()->word,
+        'name'    => fake()->word,
         'entries' => [
             [
                 'name' => fake()->word,
-                'type' => fake()->randomElement(getEnumValues(TypeDataEnum::class))
+                'type' => fake()->randomElement(getEnumValues(TypeDataEnum::class)),
             ],
-        ]
+        ],
     ];
 
     $this->postJson(route('databases.store'), $externalDataBase)
@@ -21,14 +21,13 @@ it('create a new externalDataBase', function () {
                 'externalDataBase' => [
                     'id',
                     'name',
-                    'created_at'
-                ]
+                    'created_at',
+                ],
             ]
         );
 });
 
 it('create a new externalDataBase with missing param', function () {
-
     $externalDataBase = [];
 
     $this->postJson(route('databases.store'), $externalDataBase)

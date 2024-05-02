@@ -9,6 +9,7 @@ class Mapping
     /**
      * @param $attributesEntry
      * @param $data
+     *
      * @return void
      */
     public function map($attributesEntry, $data): void
@@ -17,9 +18,10 @@ class Mapping
             foreach ($data->chunk(1000) as $chunk) {
                 $collectionValues = collect($chunk)->map(function ($row) use ($entries) {
                     $row = collect($row);
+
                     return [
-                        'key' => $entries['header'],
-                        'value' => $row[$entries['header']]
+                        'key'   => $entries['header'],
+                        'value' => $row[$entries['header']],
                     ];
                 });
                 Entry::findOrFail($entries['entryId'])->dataEntries()->createMany($collectionValues);

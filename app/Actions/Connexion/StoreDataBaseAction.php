@@ -15,13 +15,13 @@ class StoreDataBaseAction
      */
     public function __construct(
         private readonly DatabaseConfig $databaseConfig,
-        private readonly ExportTable    $exportTable
-    )
-    {
+        private readonly ExportTable $exportTable
+    ) {
     }
 
     /**
      * @param array $validatedData
+     *
      * @return bool|Exception|string
      * @throws \Doctrine\DBAL\Exception
      */
@@ -36,6 +36,7 @@ class StoreDataBaseAction
             $connection->getSchemaBuilder()->getConnection()->setPdo($connection->getPdo());
             $connection->getSchemaBuilder()->getTables();
             $tableName = $validatedData['name'];
+
             return $this->exportTable->exportTableToSqlFile($connection, $tableName);
         } catch (\Illuminate\Database\QueryException $e) {
             return ['errors' => $e->getMessage()];

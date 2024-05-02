@@ -8,6 +8,7 @@ class DeleteEntryAction
 {
     /**
      * @param Entry $entry
+     *
      * @return bool
      */
     public function execute(Entry $entry): bool

@@ -12,12 +12,12 @@ class ConnectDataBaseAction
      */
     public function __construct(
         private readonly DatabaseConfig $databaseConfig
-    )
-    {
+    ) {
     }
 
     /**
      * @param array $validatedData
+     *
      * @return string|array
      * @throws Exception
      */
@@ -31,6 +31,7 @@ class ConnectDataBaseAction
             });
             $connection->getSchemaBuilder()->getConnection()->setPdo($connection->getPdo());
             $connection->getSchemaBuilder()->getTables();
+
             return true;
         } catch (\Illuminate\Database\QueryException $e) {
             return ['errors' => $e->getMessage()];

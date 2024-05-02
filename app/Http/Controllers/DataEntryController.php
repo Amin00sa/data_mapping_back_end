@@ -12,25 +12,36 @@ class DataEntryController extends Controller
     /**
      * @param UpdateDataEntriesRequest $updateDataEntriesRequest
      * @param UpdateDataEntriesAction $updateEntriesAction
+     *
      * @return JsonResponse
      */
-    public function update(UpdateDataEntriesRequest $updateDataEntriesRequest, UpdateDataEntriesAction $updateEntriesAction): JsonResponse
-    {
-        return response()->json([
-            'status' => $updateEntriesAction->execute($updateDataEntriesRequest->validated()),
-        ]);
+    public function update(
+        UpdateDataEntriesRequest $updateDataEntriesRequest,
+        UpdateDataEntriesAction $updateEntriesAction
+    ): JsonResponse {
+        return response()->json(
+            [
+                'status' => $updateEntriesAction->execute($updateDataEntriesRequest->validated()),
+            ]
+        );
     }
 
     /**
      * @param UpdateDataEntriesRequest $deleteDataEntriesRequest
      * @param DeleteDataEntriesAction $deleteDataEntriesAction
+     *
      * @return JsonResponse
      */
-    public function delete(UpdateDataEntriesRequest $deleteDataEntriesRequest, DeleteDataEntriesAction $deleteDataEntriesAction): JsonResponse
-    {
-
-        return response()->json([
-            'status' => $deleteDataEntriesAction->execute($deleteDataEntriesRequest->validated()),
-        ]);
+    public function delete(
+        UpdateDataEntriesRequest $deleteDataEntriesRequest,
+        DeleteDataEntriesAction $deleteDataEntriesAction
+    ): JsonResponse {
+        return response()->json(
+            [
+                'status' => $deleteDataEntriesAction->execute(
+                    $deleteDataEntriesRequest->validated()
+                ),
+            ]
+        );
     }
 }

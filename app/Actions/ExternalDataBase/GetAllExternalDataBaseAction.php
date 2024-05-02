@@ -17,14 +17,18 @@ class GetAllExternalDataBaseAction
     public function execute(): LengthAwarePaginator
     {
         return QueryBuilder::for(ExternalDataBase::class)
-            ->allowedIncludes([
-                'entries',
-                AllowedInclude::count('entriesCount'),
-                AllowedInclude::count('dataEntriesCount'),
-            ])
-            ->allowedFilters([
-                AllowedFilter::custom('name', new FilterByName())->nullable(),
-            ])
+            ->allowedIncludes(
+                [
+                    'entries',
+                    AllowedInclude::count('entriesCount'),
+                    AllowedInclude::count('dataEntriesCount'),
+                ]
+            )
+            ->allowedFilters(
+                [
+                    AllowedFilter::custom('name', new FilterByName())->nullable(),
+                ]
+            )
             ->defaultSort('-created_at')
             ->paginate(5)
             ->onEachSide(1);

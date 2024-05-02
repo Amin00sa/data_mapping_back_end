@@ -10,6 +10,7 @@ class CreateExternalDataBaseAction
 {
     /**
      * @param array $validatedData
+     *
      * @return Builder|ExternalDataBase
      */
     public function execute(array $validatedData): Builder|ExternalDataBase

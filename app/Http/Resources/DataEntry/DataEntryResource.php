@@ -14,8 +14,8 @@ class DataEntryResource extends JsonResource
     public function toArray($request): array
     {
         return [
-            'id' => $this->id,
-            'key' => $this->key,
+            'id'    => $this->id,
+            'key'   => $this->key,
             'value' => $this->value,
         ];
     }

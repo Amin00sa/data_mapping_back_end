@@ -22,9 +22,9 @@ class ConnexionStoreRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'driver' => ['required', new Enum(DriverEnum::class)],
-            'host' => ['required', 'string'],
-            'port' => ['required', 'integer'],
+            'driver'   => ['required', new Enum(DriverEnum::class)],
+            'host'     => ['required', 'string'],
+            'port'     => ['required', 'integer'],
             'database' => ['required', 'string'],
             'username' => ['required', 'string'],
             'password' => ['nullable', 'string'],

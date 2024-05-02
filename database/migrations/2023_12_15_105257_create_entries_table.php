@@ -15,7 +15,8 @@ return new class extends Migration {
             $table->uuid('id')->primary();
             $table->string('name');
             $table->enum('type', getEnumValues(TypeDataEnum::class));
-            $table->foreignUuid('external_data_base_id')->nullable()->constrained()->cascadeOnUpdate()->cascadeOnDelete();
+            $table->foreignUuid('external_data_base_id')->nullable()->constrained()->cascadeOnUpdate()->cascadeOnDelete(
+            );
             $table->softDeletes();
             $table->timestamps();
         });

@@ -22,10 +22,10 @@ class StoreDataBaseRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => ['required', 'string'],
-            'driver' => ['required', new Enum(DriverEnum::class)],
-            'host' => ['required', 'string'],
-            'port' => ['required', 'integer'],
+            'name'     => ['required', 'string'],
+            'driver'   => ['required', new Enum(DriverEnum::class)],
+            'host'     => ['required', 'string'],
+            'port'     => ['required', 'integer'],
             'database' => ['required', 'string'],
             'username' => ['required', 'string'],
             'password' => ['nullable', 'string'],

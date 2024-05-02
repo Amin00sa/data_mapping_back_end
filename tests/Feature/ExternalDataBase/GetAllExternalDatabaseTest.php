@@ -8,7 +8,7 @@ it('get all externalDatabases with entries and entriesCount and dataEntriesCount
 
     $data = [
         'filter[name]' => fake()->name,
-        'includes' => "entries,entriesCount,dataEntriesCount",
+        'includes'     => "entries,entriesCount,dataEntriesCount",
     ];
 
     $this->getJson(route('databases.index', $data))
@@ -22,8 +22,10 @@ it('get all externalDatabases with entries and entriesCount and dataEntriesCount
                         'created_at',
                         'entries',
                         'entries_count',
-                        'data_entries_count'
-                    ]]
-            ])
+                        'data_entries_count',
+                    ],
+                ],
+            ]
+        )
         ->assertOk();
 });

@@ -20,11 +20,12 @@ class EntryFactory extends Factory
     public function definition(): array
     {
         $ExternalDataBases = ExternalDataBase::factory()->create()->id;
+
         return [
-            'id' => fake()->uuid,
-            'name' => fake()->name,
-            'type' => fake()->randomElement(getEnumValues(TypeDataEnum::class)),
-            'external_data_base_id' => $ExternalDataBases
+            'id'                    => fake()->uuid,
+            'name'                  => fake()->name,
+            'type'                  => fake()->randomElement(getEnumValues(TypeDataEnum::class)),
+            'external_data_base_id' => $ExternalDataBases,
         ];
     }
 }

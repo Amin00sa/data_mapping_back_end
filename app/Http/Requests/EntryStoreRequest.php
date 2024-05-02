@@ -23,7 +23,7 @@ class EntryStoreRequest extends FormRequest
     {
         return [
             'name' => ['required', 'string'],
-            'type' => ['required', new Enum(TypeDataEnum::class)]
+            'type' => ['required', new Enum(TypeDataEnum::class)],
         ];
     }
 }

@@ -1,11 +1,11 @@
 <?php
 
 use App\Http\Controllers\ConnectDataBaseController;
+use App\Http\Controllers\DataEntryController;
 use App\Http\Controllers\EntryController;
 use App\Http\Controllers\ExternalDataBaseController;
 use App\Http\Controllers\FileController;
 use App\Http\Controllers\MappingController;
-use App\Http\Controllers\DataEntryController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 

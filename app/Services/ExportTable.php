@@ -11,17 +11,19 @@ class ExportTable
     /**
      * @param $connection
      * @param $tableName
+     *
      * @return bool|Exception
      */
     public function exportTableToSqlFile($connection, $tableName): bool|Exception
     {
         try {
-            $columnsHeader = array_map(function($item) {
+            $columnsHeader = array_map(function ($item) {
                 return $item['name'];
             }, $connection->getSchemaBuilder()->getColumns($tableName));
             $data = $this->getData($connection, $tableName);
             $columnsType = $this->getType($connection->getSchemaBuilder()->getColumns($tableName));
-            $sql = $this->createSqlFile($tableName,$columnsHeader ,$columnsType, $data);
+            $sql = $this->createSqlFile($tableName, $columnsHeader, $columnsType, $data);
+
             return $this->saveSqlFile($sql, $tableName, $columnsHeader);
         } catch (Exception $e) {
             return $e;
@@ -30,18 +32,21 @@ class ExportTable
 
     /**
      * @param array $columns
+     *
      * @return array
      */
     public function getType(array $columns): array
     {
         return array_map(function ($column) {
             $type = $column['type_name'];
+
             return $column['name'] . " " . $this->getTypeName($type);
         }, $columns);
     }
 
     /**
      * @param $typeName
+     *
      * @return string
      */
     private function getTypeName($typeName): string
@@ -66,12 +71,14 @@ class ExportTable
                 $typeName = 'varchar(255) DEFAULT NULL';
                 break;
         }
+
         return $typeName;
     }
 
     /**
      * @param $connection
      * @param $tableName
+     *
      * @return array
      */
     private function getData($connection, $tableName): array
@@ -80,6 +87,7 @@ class ExportTable
         foreach ($connection->table($tableName)->get() as $row) {
             $rowsToInsert[] = $row;
         }
+
         return $rowsToInsert;
     }
 
@@ -87,9 +95,10 @@ class ExportTable
      * @param $tableName
      * @param $columnsWithType
      * @param $rowsToInsert
+     *
      * @return string
      */
-    private function createSqlFile($tableName, $columnsHeader ,$columnsType, $rowsToInsert): string
+    private function createSqlFile($tableName, $columnsHeader, $columnsType, $rowsToInsert): string
     {
         $sql = "CREATE TABLE $tableName ( \n" . implode(', ', $columnsType) . "\n ); \n \n \n";
         $sql .= "INSERT INTO $tableName (" . implode(', ', $columnsHeader) . ") VALUES \n";
@@ -115,17 +124,21 @@ class ExportTable
      * @param $sql
      * @param $tableName
      * @param $columnsHeader
+     *
      * @return bool
      */
     public static function saveSqlFile($sql, $tableName, $columnsHeader): bool
     {
         $filename = str()->uuid() . $tableName . ".sql";
-        file_put_contents("storage/files/". $filename, $sql);
-        File::query()->create([
-            'name' => $tableName . ".sql",
-            'path_file' => 'files/' . $filename,
-            'headers' => json_encode($columnsHeader)
-        ]);
+        file_put_contents("storage/files/" . $filename, $sql);
+        File::query()->create(
+            [
+                'name'      => $tableName . ".sql",
+                'path_file' => 'files/' . $filename,
+                'headers'   => json_encode($columnsHeader),
+            ]
+        );
+
         return true;
     }
 }

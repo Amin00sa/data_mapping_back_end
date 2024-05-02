@@ -1,29 +1,29 @@
 <?php
 
+use App\Enums\TypeDataEnum;
 use App\Models\Entry;
 use App\Models\ExternalDataBase;
 use Illuminate\Http\Response;
-use App\Enums\TypeDataEnum;
 
 it('update an externalDataBase', function () {
-
     $externalDataBase = ExternalDataBase::factory()->create();
     $entry = Entry::factory()->create();
 
     $updatedData = [
-        'name' => fake()->name,
-        'entries' => [
+        'name'               => fake()->name,
+        'entries'            => [
             [
                 'name' => fake()->word,
                 'type' => fake()->randomElement(getEnumValues(TypeDataEnum::class)),
-                'id' => null,
-            ], [
+                'id'   => null,
+            ],
+            [
                 'name' => $entry->name,
                 'type' => fake()->randomElement(getEnumValues(TypeDataEnum::class)),
-                'id' => $entry->id,
-            ]
+                'id'   => $entry->id,
+            ],
         ],
-        'entriesToBeDeleted' => []
+        'entriesToBeDeleted' => [],
     ];
 
     $this->postJson(route('databases.update', $externalDataBase->id), $updatedData)

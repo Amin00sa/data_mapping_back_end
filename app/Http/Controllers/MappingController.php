@@ -14,8 +14,10 @@ class MappingController extends Controller
      */
     public function store(MappingStoreRequest $mappingStoreRequest, AddDataToDataBase $addDataToDataBase): JsonResponse
     {
-        return response()->json([
-            'status' => $addDataToDataBase->execute($mappingStoreRequest->validated())
-        ]);
+        return response()->json(
+            [
+                'status' => $addDataToDataBase->execute($mappingStoreRequest->validated()),
+            ]
+        );
     }
 }

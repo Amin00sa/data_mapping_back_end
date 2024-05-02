@@ -22,10 +22,10 @@ class ExternalDataBaseStoreRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => ['required', 'string'],
-            'entries' => ['required', 'array'],
+            'name'           => ['required', 'string'],
+            'entries'        => ['required', 'array'],
             'entries.*.name' => ['required', 'string'],
-            'entries.*.type' => ['required', new Enum(TypeDataEnum::class)]
+            'entries.*.type' => ['required', new Enum(TypeDataEnum::class)],
         ];
     }
 }

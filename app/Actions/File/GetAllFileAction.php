@@ -16,9 +16,11 @@ class GetAllFileAction
     public function execute(): LengthAwarePaginator
     {
         return QueryBuilder::for(File::class)
-            ->allowedFilters([
-                AllowedFilter::custom('name', new FilterByName())->nullable(),
-            ])
+            ->allowedFilters(
+                [
+                    AllowedFilter::custom('name', new FilterByName())->nullable(),
+                ]
+            )
             ->defaultSort('-created_at')
             ->paginate(4)
             ->onEachSide(1);

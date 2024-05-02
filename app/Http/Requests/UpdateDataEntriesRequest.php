@@ -20,8 +20,8 @@ class UpdateDataEntriesRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'dataEntries' => ['required', 'array'],
-            'dataEntries.*.id' => ['nullable', 'uuid', 'exists:data_entries,id'],
+            'dataEntries'         => ['required', 'array'],
+            'dataEntries.*.id'    => ['nullable', 'uuid', 'exists:data_entries,id'],
             'dataEntries.*.value' => ['nullable', 'string'],
         ];
     }

@@ -12,6 +12,7 @@ class UpdateExternalDataBaseAction
     /**
      * @param ExternalDataBase $externalDataBase
      * @param array $validatedData
+     *
      * @return bool
      */
     public function execute(ExternalDataBase $externalDataBase, array $validatedData): bool
@@ -19,15 +20,16 @@ class UpdateExternalDataBaseAction
         return DB::transaction(function () use ($externalDataBase, $validatedData) {
             $mappedArrays = array_map(function ($arr) use ($externalDataBase) {
                 return [
-                    'id' => $arr['id'] ?? Str::uuid()->toString(),
-                    'name' => $arr['name'],
-                    'type' => $arr['type'],
+                    'id'                    => $arr['id'] ?? Str::uuid()->toString(),
+                    'name'                  => $arr['name'],
+                    'type'                  => $arr['type'],
                     'external_data_base_id' => $externalDataBase->id,
                 ];
             }, $validatedData['entries']);
 
             Entry::query()->upsert($mappedArrays, 'id', ['type', 'name']);
             $externalDataBase->update(['name' => $validatedData['name']]);
+
             return true;
         });
     }

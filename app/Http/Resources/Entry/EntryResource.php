@@ -15,10 +15,10 @@ class EntryResource extends JsonResource
     public function toArray($request): array
     {
         return [
-            'id' => $this->id,
-            'name' => $this->name,
-            'type' => $this->type,
-            'dataEntries'=> DataEntryResource::collection($this->whenLoaded('dataEntries')),
+            'id'          => $this->id,
+            'name'        => $this->name,
+            'type'        => $this->type,
+            'dataEntries' => DataEntryResource::collection($this->whenLoaded('dataEntries')),
         ];
     }
 }

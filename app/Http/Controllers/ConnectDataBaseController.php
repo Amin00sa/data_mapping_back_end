@@ -18,28 +18,40 @@ class ConnectDataBaseController extends Controller
     /**
      * @param StoreDataBaseRequest $storeDataBaseRequest
      * @param StoreDataBaseAction $storeDataBaseAction
+     *
      * @return JsonResponse
      * @throws Exception
      */
-    public function downloadExternalTablesAsSqlFiles(StoreDataBaseRequest $storeDataBaseRequest, StoreDataBaseAction $storeDataBaseAction): JsonResponse
-    {
+    public function downloadExternalTablesAsSqlFiles(
+        StoreDataBaseRequest $storeDataBaseRequest,
+        StoreDataBaseAction $storeDataBaseAction
+    ): JsonResponse {
         $storeDataBaseRequest['password'] = $storeDataBaseRequest['password'] ?? '';
-        return response()->json([
-            'status' => $storeDataBaseAction->execute($storeDataBaseRequest->validated()),
-        ]);
+
+        return response()->json(
+            [
+                'status' => $storeDataBaseAction->execute($storeDataBaseRequest->validated()),
+            ]
+        );
     }
 
     /**
      * @param ConnexionStoreRequest $connexionStoreRequest
      * @param ConnectDataBaseAction $connectDataBaseAction
+     *
      * @return JsonResponse
      * @throws Exception
      */
-    public function connectToExternalDataBase(ConnexionStoreRequest $connexionStoreRequest, ConnectDataBaseAction $connectDataBaseAction): JsonResponse
-    {
+    public function connectToExternalDataBase(
+        ConnexionStoreRequest $connexionStoreRequest,
+        ConnectDataBaseAction $connectDataBaseAction
+    ): JsonResponse {
         $connexionStoreRequest['password'] = $connexionStoreRequest['password'] ?? '';
-        return response()->json([
-            'status' => $connectDataBaseAction->execute($connexionStoreRequest->validated()),
-        ]);
+
+        return response()->json(
+            [
+                'status' => $connectDataBaseAction->execute($connexionStoreRequest->validated()),
+            ]
+        );
     }
 }
